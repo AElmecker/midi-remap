@@ -1,6 +1,6 @@
 # MIDI Remap
 
-Every had a MIDI drum file that sounded good in one program and after importing into another one it started sounding 
+Ever had a MIDI drum file that sounded good in one program and after importing into another one it started sounding 
 weird or the wrong percussion elements were hit?
 
 Same here, but there's a solution!\
