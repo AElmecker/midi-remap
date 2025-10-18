@@ -13,6 +13,10 @@ public final class DispatchingMidiFileVisitor implements MidiFileVisitor {
 
     private final List<MidiFileVisitor> delegates;
 
+    public DispatchingMidiFileVisitor(MidiFileVisitor... delegates) {
+        this(List.of(delegates));
+    }
+
     public DispatchingMidiFileVisitor(List<MidiFileVisitor> delegates) {
         this.delegates = requireNonNull(delegates);
     }

@@ -1,16 +1,18 @@
 package at.elmecker.midiremap.definition;
 
 import static at.elmecker.midiremap.Preconditions.checkNote;
+import static java.util.Objects.requireNonNull;
 
 public class RemapDefinition {
 
     private final int[] mapping;
 
     private RemapDefinition(int[] mapping) {
-        this.mapping = mapping;
+        this.mapping = requireNonNull(mapping);
     }
 
     public int mappedNote(int originNote) {
+        checkNote("origin", originNote);
         return mapping[originNote];
     }
 

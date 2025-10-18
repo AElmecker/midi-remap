@@ -4,53 +4,56 @@ import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiFileFormat;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Track;
-import java.io.IOException;
 
 import static java.util.Objects.requireNonNull;
 
-public class CopyingMidiFileVisitor implements MidiFileVisitor {
+public class ThrowingMidiFileVisitor extends RecordingMidiFileVisitor {
 
-    private final MidiWriter writer;
-    private Sequence sequence = null;
-    private int fileType = -1;
+    private final RuntimeException exception;
 
-    public CopyingMidiFileVisitor(MidiWriter writer) {
-        this.writer = requireNonNull(writer);
+    public ThrowingMidiFileVisitor(RuntimeException exception) {
+        this.exception = requireNonNull(exception);
     }
 
     @Override
     public void startFile(String absoluteFilePath, MidiFileFormat format) {
-        sequence = null;
-        fileType = format.getType();
+        super.startFile(absoluteFilePath, format);
+        throw exception;
     }
 
     @Override
     public void startSequence(Sequence sequence) {
-        this.sequence = sequence;
+        super.startSequence(sequence);
+        throw exception;
     }
 
     @Override
     public void endSequence() {
+        super.endSequence();
+        throw exception;
     }
 
     @Override
     public void startTrack(Track track) {
+        super.startTrack(track);
+        throw exception;
     }
 
     @Override
     public void endTrack() {
+        super.endTrack();
+        throw exception;
     }
 
     @Override
     public void onEvent(MidiEvent event) {
+        super.onEvent(event);
+        throw exception;
     }
 
     @Override
     public void endFile() {
-        try {
-            writer.write(sequence, fileType);
-        } catch (IOException e) {
-            System.err.println("Could not write to output: " + e.getMessage());
-        }
+        super.endFile();
+        throw exception;
     }
 }
