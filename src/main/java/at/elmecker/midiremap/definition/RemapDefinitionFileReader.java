@@ -28,6 +28,10 @@ public class RemapDefinitionFileReader {
         RemapDefinition.Builder builder = RemapDefinition.builder();
 
         for (String line : lines) {
+            if (line.isBlank()) {
+                continue;
+            }
+
             // Limit is 5 to stop unnecessary regex matching, but also to prevent that the 4th segment contains all the
             // unmatched rest. Which is unwanted.
             String[] split = line.split(",", 5);

@@ -17,7 +17,7 @@ public final class Utils {
         checkNote("input", midiNote);
         requireNonNull(octaveAlignment);
 
-        int register = (midiNote / 12) - octaveAlignment.shiftValue();
+        int register = (midiNote / 12) + octaveAlignment.shiftValue();
         int note = midiNote % 12;
         return TWELVE_NOTE_CHROMATIC_SCALE[note] + register;
     }
@@ -33,13 +33,13 @@ public final class Utils {
          * <br/>
          * Lowest note will be C-2 (MIDI note 0).
          */
-        MIDDLE_C_AS_C3(-1),
+        MIDDLE_C_AS_C3(-2),
         /**
          * Uses C4 as the middle C, which aligns with the MIDI standard.
          * <br/>
          * Lowest note will be C-1 (MIDI note 0).
          */
-        MIDDLE_C_AS_C4(-2),
+        MIDDLE_C_AS_C4(-1),
         ;
 
         private final int shiftValue;

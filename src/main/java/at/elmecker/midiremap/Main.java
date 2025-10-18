@@ -2,16 +2,13 @@ package at.elmecker.midiremap;
 
 import at.elmecker.midiremap.definition.RemapDefinition;
 import at.elmecker.midiremap.definition.RemapDefinitionFileReader;
-import at.elmecker.midiremap.io.CopyingMidiFileVisitor;
-import at.elmecker.midiremap.io.LoggingMidiFileVisitor;
-import at.elmecker.midiremap.io.MidiFileReader;
-import at.elmecker.midiremap.io.RemappingMidiFileVisitor;
+import at.elmecker.midiremap.io.*;
 
 import javax.sound.midi.InvalidMidiDataException;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 public class Main {
 
@@ -34,21 +31,26 @@ public class Main {
                 """);
 
         if (args.length < 3) {
-            System.err.println("Too few arguments, please provide input and output file!");
-            return;
+            throw new IllegalArgumentException("Too few arguments, please provide input and output file!");
         }
 
-        String inputPath = args[0];
-        Path outputPath = Path.of(URI.create("file:" + args[1]));
-        Path remapDefinitionPath = Path.of(URI.create("file:" + args[2]));
+        Path inputPath = path(args[0]);
+        Path outputPath = path(args[1]);
+        Path remapDefinitionPath = path(args[2]);
+
         RemapDefinitionFileReader remapDefinitionFileReader = new RemapDefinitionFileReader();
         RemapDefinition definition = remapDefinitionFileReader.read(remapDefinitionPath);
 
-        MidiFileReader midiFileReader = new MidiFileReader();
-        midiFileReader.read(inputPath, List.of(
+        MidiReader reader = new MidiSystemFileReader();
+        MidiFile midiFile = reader.read(inputPath);
+        midiFile.accept(new DispatchingMidiFileVisitor(
                 new LoggingMidiFileVisitor(),
                 new RemappingMidiFileVisitor(definition),
-                new CopyingMidiFileVisitor(outputPath)
+                new CopyingMidiFileVisitor(new MidiSystemFileWriter(() -> Files.newOutputStream(outputPath)))
         ));
+    }
+
+    private static Path path(String filePath) {
+        return Path.of(URI.create("file:" + filePath));
     }
 }
