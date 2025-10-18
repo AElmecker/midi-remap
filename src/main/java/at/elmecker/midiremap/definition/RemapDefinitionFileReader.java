@@ -36,13 +36,7 @@ public class RemapDefinitionFileReader {
             // unmatched rest. Which is unwanted.
             String[] split = line.split(",", 5);
             int originNote = parseMidiNote("origin", split[0]);
-            String originNoteDescription = null;
             int destinationNote = originNote;
-            String destinationNoteDescription = null;
-
-            if (split.length > 1) {
-                originNoteDescription = split[1];
-            }
 
             if (split.length > 2) {
                 String unparsedMappedNote = split[2];
@@ -50,10 +44,6 @@ public class RemapDefinitionFileReader {
                 if (!unparsedMappedNote.isBlank()) {
                     destinationNote = parseMidiNote("destination", unparsedMappedNote);
                 }
-            }
-
-            if (split.length > 3) {
-                destinationNoteDescription = split[3];
             }
 
             builder.addMapping(originNote, destinationNote);
