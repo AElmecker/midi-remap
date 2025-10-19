@@ -1,10 +1,11 @@
 plugins {
     id("java")
     `java-test-fixtures`
+    alias(libs.plugins.axion.release)
 }
 
 group = "at.elmecker"
-version = "0.1.0-SNAPSHOT"
+version = scmVersion.version
 
 repositories {
     mavenCentral()
