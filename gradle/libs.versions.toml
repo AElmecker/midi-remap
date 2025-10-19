@@ -1,6 +1,7 @@
 [versions]
 junit = "6.0.0"
 assertj = "3.27.6"
+axion = "1.20.1"
 
 [libraries]
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
@@ -8,3 +9,6 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jun
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit" }
 
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+
+[plugins]
+axion-release = { id = "pl.allegro.tech.build.axion-release", version.ref = "axion" }
