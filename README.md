@@ -7,21 +7,41 @@ Same here, but there's a solution!\
 With this tool you can build note mappings between programs/formats and convert MIDI files so they sound at least´
 somewhat nice, wherever you need them to :)
 
-## Installation and Getting Started
+## Getting Started
 
-TBD
+1. Make sure to have java 21 or newer installed and properly set up
+2. Checkout the repository
+3. Create the jar by running
+   1. `./gradlew jar` (MacOS/Linux) or
+   2. `./gradlew.bat jar` (Windows)
+4. Execute the application `java -jar ./build/libs/midi-remap-<version>.jar <midi-in> <midi-out> <remapping-definition>`
 
-## Getting Help
+## Getting Help / Reporting Issues
 
-TBD
+We are happy to help, but please consult documentation and existing issues first.
 
-## Reporting Issues
+Please provide as much information as you can when creating an issue and if feasible a test/sample code to reproduce.
 
-TBD
+## Contributing
 
-## Building From Source
+Contributions are very welcome!\
+To make collaboration as easy as possible everyone should adhere following steps:
 
-TBD
+* Every contribution has a dedicated issue
+  * Except minor changes like
+    * small re-formatting changes
+    * minor code smell fixes
+    * spelling/grammar corrections
+    * etc...
+* Commit messages start with issue or `NOISSUE`:
+  * `#3: add tests`
+  * `NOISSUE: fix typo in README.md`
+* Contributions uphold the quality standards
+  * tests
+  * formatting
+  * etc...
+* Make sure that when contributing, that you are the owner and/or have the rights to distribute code, compositions, or
+  any other kind of data.
 
 ## License
 
