@@ -1,7 +1,10 @@
+import java.net.URI
+
 plugins {
     id("java")
     `java-test-fixtures`
     alias(libs.plugins.axion.release)
+    id("maven-publish")
 }
 
 group = "at.elmecker"
@@ -21,4 +24,17 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = URI.create("https://maven.pkg.github.com/AElmecker/midi-remap")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
