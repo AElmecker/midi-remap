@@ -4,7 +4,7 @@ Ever had a MIDI drum file that sounded good in one program and after importing i
 weird or the wrong percussion elements were hit?
 
 Same here, but there's a solution!\
-With this tool you can build note mappings between programs/formats and convert MIDI files so they sound at least´
+With this tool you can build note mappings between programs/formats and convert MIDI files so they sound at least
 somewhat nice, wherever you need them to :)
 
 ## Getting Started
