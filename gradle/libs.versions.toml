@@ -1,7 +1,7 @@
 [versions]
 junit = "6.0.1"
 assertj = "3.27.6"
-axion = "1.20.1"
+axion = "1.21.1"
 
 [libraries]
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
