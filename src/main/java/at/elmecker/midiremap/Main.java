@@ -51,6 +51,6 @@ public class Main {
     }
 
     private static Path path(String filePath) {
-        return Path.of(URI.create("file:" + filePath));
+        return Path.of(filePath);
     }
 }
