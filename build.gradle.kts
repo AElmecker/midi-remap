@@ -26,6 +26,12 @@ tasks.test {
     useJUnitPlatform()
 }
 
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "at.elmecker.midiremap.Main"
+    }
+}
+
 publishing {
     repositories {
         maven {
