@@ -16,6 +16,10 @@ somewhat nice, wherever you need them to :)
    2. `./gradlew.bat jar` (Windows)
 4. Execute the application `java -jar ./build/libs/midi-remap-<version>.jar <midi-in> <midi-out> <remapping-definition>`
 
+### Remapping definitions
+
+Continue reading [here](mappings/README.md) on how to use and contribute mapping definitions.
+
 ## Getting Help / Reporting Issues
 
 We are happy to help, but please consult documentation and existing issues first.
