@@ -1,5 +1,7 @@
 package at.elmecker.midiremap.io;
 
+import at.elmecker.midiremap.StringUtils;
+
 import javax.sound.midi.*;
 
 public class LoggingMidiFileVisitor implements MidiFileVisitor {
@@ -60,13 +62,18 @@ public class LoggingMidiFileVisitor implements MidiFileVisitor {
         System.out.println("Status: " + message.getStatus());
         System.out.println("Length: " + message.getLength());
 
-        if (message instanceof ShortMessage sm) {
-            System.out.println("Command: 0x" + Long.toHexString(sm.getCommand()) + " (" + sm.getCommand() + ")");
-            System.out.println("Channel: 0x" + Long.toHexString(sm.getChannel()) + " (" + sm.getChannel() + ")");
-            System.out.println("Data-1: " + sm.getData1());
-            System.out.println("Data-2: " + sm.getData2());
-        } else {
-            System.out.println("Message: " + message);
+        switch (message) {
+            case ShortMessage sm -> {
+                System.out.println("Command: " + StringUtils.toHexAndDecString(sm.getCommand()));
+                System.out.println("Channel: " + StringUtils.toHexAndDecString(sm.getChannel()));
+                System.out.println("Data-1: " + sm.getData1());
+                System.out.println("Data-2: " + sm.getData2());
+            }
+            case MetaMessage mm -> {
+                System.out.println("Meta-Type: " + StringUtils.toHexAndDecString(mm.getType()));
+                System.out.println("Data: " + StringUtils.byteArrayToHexString(mm.getData()));
+            }
+            default -> System.out.println("Message: " + message);
         }
     }
 
