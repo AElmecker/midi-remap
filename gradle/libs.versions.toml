@@ -1,6 +1,6 @@
 [versions]
 junit = "6.0.1"
-assertj = "3.27.6"
+assertj = "3.27.7"
 axion = "1.21.1"
 
 [libraries]
